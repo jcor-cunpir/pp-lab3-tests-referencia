@@ -32,3 +32,29 @@ endif()
 add_executable(gestor src/main.cpp ${FUENTES})
 target_include_directories(gestor PRIVATE include)
 target_compile_options(gestor PRIVATE ${WARNINGS})
+
+# ----------------------------------------------------------------------------
+# 3. Los tests con GoogleTest (se descarga solo la primera vez que se configura).
+# ----------------------------------------------------------------------------
+include(FetchContent)
+FetchContent_Declare(googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.14.0
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)   # necesario en Windows con Visual Studio
+set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)                # no usamos gmock: compila más rápido
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+# >>> AQUÍ <<<  Cada vez que creéis un fichero de tests nuevo en tests/, añadidlo aquí.
+add_executable(tests_gestor
+    tests/test_habitacion.cpp
+    ${FUENTES}
+)
+target_include_directories(tests_gestor PRIVATE include)
+target_compile_options(tests_gestor PRIVATE ${WARNINGS})
+target_link_libraries(tests_gestor PRIVATE GTest::gtest_main)
+
+add_test(NAME GestorTests COMMAND tests_gestor)
