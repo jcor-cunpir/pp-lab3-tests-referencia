@@ -1,0 +1,23 @@
+# .github/workflows/ci.yml — se ejecuta en GitHub en cada push y cada pull request.
+# Compila el proyecto en una máquina Linux limpia y pasa los tests.
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Instalar herramientas
+        run: sudo apt-get update && sudo apt-get install -y cmake g++
+      - name: Configurar CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+      - name: Compilar
+        run: cmake --build build
+      - name: Tests
+        run: cd build && ctest --output-on-failure
