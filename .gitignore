@@ -1,0 +1,8 @@
+# Generado por CMake: NUNCA va a Git
+build/
+# Configuración local de editores
+.vscode/
+.idea/
+.DS_Store
+# Datos que genera el programa al ejecutarse
+hotel.txt
