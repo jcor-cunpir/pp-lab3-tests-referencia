@@ -19,6 +19,7 @@ set(FUENTES
     src/habitacion.cpp
     src/suite.cpp
     src/hotel.cpp
+    src/almacen.cpp
 )
 
 # Warnings activados: el compilador como aliado.
