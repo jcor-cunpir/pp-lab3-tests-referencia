@@ -17,6 +17,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # ----------------------------------------------------------------------------
 set(FUENTES
     src/habitacion.cpp
+    src/suite.cpp
 )
 
 # Warnings activados: el compilador como aliado.
@@ -51,6 +52,7 @@ enable_testing()
 # >>> AQUÍ <<<  Cada vez que creéis un fichero de tests nuevo en tests/, añadidlo aquí.
 add_executable(tests_gestor
     tests/test_habitacion.cpp
+    tests/test_suite.cpp
     ${FUENTES}
 )
 target_include_directories(tests_gestor PRIVATE include)
