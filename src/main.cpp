@@ -1,15 +1,18 @@
-// src/main.cpp — prueba rápida de Habitacion y Suite, a través de punteros a la base.
+// src/main.cpp — un hotel de ejemplo: reserva la primera habitación libre.
 #include <iostream>
-#include <memory>
-#include <vector>
+#include "hotel.hpp"
 #include "suite.hpp"
 
 int main() {
-    std::vector<std::unique_ptr<Habitacion>> habitaciones;
-    habitaciones.push_back(std::make_unique<Habitacion>(101, 80.0));
-    habitaciones.push_back(std::make_unique<Suite>(301, 200.0));
-    for (const auto& h : habitaciones) {
-        std::cout << h->tipo() << " " << h->getNumero()
+    Hotel hotel;
+    hotel.anadir(std::make_unique<Habitacion>(101, 80.0));
+    hotel.anadir(std::make_unique<Habitacion>(102, 95.5));
+    hotel.anadir(std::make_unique<Suite>(301, 200.0));
+
+    for (const auto& h : hotel.habitaciones()) {
+        std::cout << "  " << h->tipo() << " " << h->getNumero()
                   << " - 7 noches: " << h->precioEstancia(7) << " EUR\n";
     }
+    hotel.reservar(101);
+    std::cout << "Libres: " << hotel.libres() << " de " << hotel.total() << "\n";
 }
