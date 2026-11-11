@@ -18,6 +18,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(FUENTES
     src/habitacion.cpp
     src/suite.cpp
+    src/hotel.cpp
 )
 
 # Warnings activados: el compilador como aliado.
