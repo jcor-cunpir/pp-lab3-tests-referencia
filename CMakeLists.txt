@@ -54,6 +54,7 @@ enable_testing()
 add_executable(tests_gestor
     tests/test_habitacion.cpp
     tests/test_suite.cpp
+    tests/test_hotel.cpp
     ${FUENTES}
 )
 target_include_directories(tests_gestor PRIVATE include)
